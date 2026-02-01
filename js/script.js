@@ -1,24 +1,25 @@
 axios.get(`https://boolean-teachers.github.io/mock/api/members/`)
   .then (response => {
-    console.log(response.data);
+    const teamMembers = [...response.data];
     const cardSection = document.getElementById("card-section");
 
-    // for (let index = 0; index < teamMembers.length; index++) {
-    //   const{name, role, email, img}=teamMembers[index];
-    //   cardSection.innerHTML +=
-    //                 `<div class="col-12 col-md-6 col-xl-4 my-2">
-    //                 <article class="d-flex bg-dark">
-    //                         <div class="col-3">
-    //                             <img class="img-fluid" src="./${img}" alt="member card picture">                        
-    //                         </div>
-    //                         <div class="d-flex col-9 flex-column justify-content-center">
-    //                             <h2 class="team-name fw-bolder text-light mb-0 ms-3">${name.toLocaleUpperCase()}</h2>
-    //                             <p class="team-role text-light  mb-0 ms-3">${role}</p>
-    //                             <a class="team-mail fs text-info mb-0 ms-3" href="mailto:${email}">${email}</a>
-    //                         </div>
-    //                 </article>
-    //             </div>`
-    // }
+    console.log(teamMembers);
+    for (let index = 0; index < teamMembers.length; index++) {
+      const{name, role, email, img}=teamMembers[index];
+      cardSection.innerHTML +=
+                    `<div class="col-12 col-md-6 col-xl-4 my-2">
+                    <article class="d-flex bg-dark">
+                            <div class="col-3">
+                                <img class="img-fluid" src="${img}" alt="member card picture">                        
+                            </div>
+                            <div class="d-flex col-9 flex-column justify-content-center">
+                                <h2 class="team-name fw-bolder text-light mb-0 ms-3">${name.toLocaleUpperCase()}</h2>
+                                <p class="team-role text-light  mb-0 ms-3">${role}</p>
+                                <a class="team-mail fs text-info mb-0 ms-3" href="mailto:${email}">${email}</a>
+                            </div>
+                    </article>
+                </div>`
+    }
   })
   .catch (error => {
     console.log(error);
